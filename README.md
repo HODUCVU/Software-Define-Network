@@ -18,9 +18,11 @@
 ## Start a topology with 1 switch and 4 hosts
 ### Code
 
-'''sudo mn --topo single,4 --controller=none --mac'''
-> --topo single,4: Use to create a switch and 4 host.
-> --controller=none: No controller.
+```
+sudo mn --topo single,4 --controller=none --mac
+```
+> --topo single,4: Use to create a switch and 4 host.\
+> --controller=none: No controller.\
 > --mac: Assign MAC address from 00:00:00:00:00:01 to 00:00:00:00:00:04 for host 1 to host 4.
 ### Result
 
