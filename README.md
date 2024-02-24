@@ -12,7 +12,7 @@
 	* Implementing some basic forwarding entries with 'ovs-ofctl' command: Host 1 can send packet to any host, host 2 can sen packets to host 4, drop all packets from host 3
 		* Use port number information
 		* Use MAC address information
-		* UsE IPpp address information
+		* Use IP address information
 # Solution
 
 ## Start a topology with 1 switch and 4 hosts
@@ -62,8 +62,77 @@ pingall
 * Host 1 can send packet to any host.
 * Host 2 can send packets to host 4.
 * Drop all packets from host 3.
+** To host 1 can send packets to host 3 but host 3 cannot send packets to host 1, we only block requests from host 3, but do not block replies from host 3 to other hosts. **
 
 #### Use port number information
+Drop request from host 3
 ```
+sh ovs-ofctl add-flow s1 priority=1001,in_port=s1-eth3,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
+```
+Drop request from host 2 to host 1
+```
+sh ovs-ofctl add-flow s1 priority=1001,in_port=s1-eth2,dl_dst=00:00:00:00:00:01,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
+```
+Drop request from host 2 to host 3
+```
+sh ovs-ofctl add-flow s1 priority=1001,in_port=s1-eth2,dl_dst=00:00:00:00:00:03,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
+```
+> dl_dst: destination MAC address
+> nw_proto=1: Specifies that the packet's protocol is ICMP.\
+> dl_type=0x800: IPv4.\
+> icmp_type=8: specifies that packets have ICMP request.
+#### Use MAC address information
+Delete drop with port number
+```
+sh ovs-ofctl del-flows s1 in_port=s1-eth3,dl_type=0x800,nw_proto=1,icmp_type=8
+sh ovs-ofctl del-flows s1 in_port=s1-eth2,dl_dst=00:00:00:00:00:01
+sh ovs-ofctl del-flows s1 in_port=s1-eth2,dl_dst=00:00:00:00:00:03
 sh ovs-ofctl dump-flows s1
 ```
+
+Drop request from host 3
+```
+sh ovs-ofctl add-flow s1 priority=1001,dl_src=00:00:00:00:00:03,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
+```
+Drop request from host 2 to host 1
+```
+sh ovs-ofctl add-flow s1 priority=1001,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:01,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
+```
+Drop request from host 2 to host 3
+```
+sh ovs-ofctl add-flow s1 priority=1001,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:03,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
+```
+
+#### Use IP address information
+Delete drop with MAC adress 
+```
+sh ovs-ofctl del-flows s1 dl_src=00:00:00:00:00:03,dl_type=0x800,nw_proto=1,icmp_type=8
+sh ovs-ofctl del-flows s1 dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:01
+sh ovs-ofctl del-flows s1 dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:03
+sh ovs-ofctl dump-flows s1
+```
+Get IP address information
+```
+h1 ifconfig
+h2 ifconfig
+h3 ifconfig
+h3 ifconfig
+```
+H1's IPv4 Address is 10.0.0.1 
+![](iph1.png)
+Drop request from host 3
+```
+sh ovs-ofctl add-flow s1 priority=1001,dl_src=00:00:00:00:00:03,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
+```
+Drop request from host 2 to host 1
+```
+sh ovs-ofctl add-flow s1 priority=1001,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:01,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
+```
+Drop request from host 2 to host 3
+```
+sh ovs-ofctl add-flow s1 priority=1001,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:03,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
+```
+
+#### Result
+![](UsePortNumberToConfig.png)
+
