@@ -1,11 +1,10 @@
 # Exercise 1
 Group members:
-	1. Ho Duc Vu - 106200284
-	2. Nguyen Minh Phuong - 106200
-	3. Huynh Vu Dinh Phuong - 106200
+1. Ho Duc Vu - 106200284 
+2. Nguyen Minh Phuong - 106200 
+3. Huynh Vu Dinh Phuong - 106200
 
 # Topic
-'''
 1. Start a topology with 1 switch and 4 hosts
 2. Manage the flow entries in ttthe created network manually using 'ovs-ofctl' command
 	1. Check current status of the switch
@@ -14,4 +13,3 @@ Group members:
 		1. Use port number information
 		2. Use MAC address information
 		3. UsE IPpp address information
-'''
