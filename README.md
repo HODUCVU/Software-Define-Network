@@ -62,7 +62,7 @@ pingall
 * Host 1 can send packet to any host.
 * Host 2 can send packets to host 4.
 * Drop all packets from host 3.
-** To host 1 can send packets to host 3 but host 3 cannot send packets to host 1, we only block requests from host 3, but do not block replies from host 3 to other hosts. **
+* **To host 1 can send packets to host 3 but host 3 cannot send packets to host 1, we only block requests from host 3, but do not block replies from host 3 to other hosts.**
 
 #### Use port number information
 Drop request from host 3
