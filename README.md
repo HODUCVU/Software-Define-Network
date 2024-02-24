@@ -118,7 +118,7 @@ h2 ifconfig
 h3 ifconfig
 h3 ifconfig
 ```
-h1's IPv4 Address is 10.0.0.1 
+h1's IPv4 Address is 10.0.0.1 \
 ![](iph1.png) \
 Drop request from host 3
 ```
