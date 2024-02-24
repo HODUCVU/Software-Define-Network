@@ -118,19 +118,19 @@ h2 ifconfig
 h3 ifconfig
 h3 ifconfig
 ```
-H1's IPv4 Address is 10.0.0.1 
-![](iph1.png)
+h1's IPv4 Address is 10.0.0.1 
+![](iph1.png) \
 Drop request from host 3
 ```
-sh ovs-ofctl add-flow s1 priority=1001,dl_src=00:00:00:00:00:03,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
+sh ovs-ofctl add-flow s1 priority=1001,nw_src=10.0.0.3,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
 ```
 Drop request from host 2 to host 1
 ```
-sh ovs-ofctl add-flow s1 priority=1001,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:01,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
+sh ovs-ofctl add-flow s1 priority=1001,nw_src=10.0.0.2,nw_dst=10.0.0.1,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
 ```
 Drop request from host 2 to host 3
 ```
-sh ovs-ofctl add-flow s1 priority=1001,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:03,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
+sh ovs-ofctl add-flow s1 priority=1001,nw_src=10.0.0.2,nw_dst=10.0.0.3,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
 ```
 
 #### Result
