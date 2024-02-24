@@ -77,7 +77,7 @@ Drop request from host 2 to host 3
 ```
 sh ovs-ofctl add-flow s1 priority=1001,in_port=s1-eth2,dl_dst=00:00:00:00:00:03,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
 ```
-> dl_dst: destination MAC address
+> dl_dst: destination MAC address\
 > nw_proto=1: Specifies that the packet's protocol is ICMP.\
 > dl_type=0x800: IPv4.\
 > icmp_type=8: specifies that packets have ICMP request.
