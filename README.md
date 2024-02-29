@@ -25,7 +25,7 @@ sudo mn --topo single,4 --controller=none --mac
 > --controller=none: No controller.\
 > --mac: Assign MAC address from 00:00:00:00:00:01 to 00:00:00:00:00:04 for host 1 to host 4.
 ### Result
-![](Result1.png)
+![](images/Result1.png)
 
 ## Manage the flow entries in the created network mmmanually using 'ovs-ofctl'
 
@@ -36,7 +36,7 @@ Show status current of switch 1
 sh ovs-ofctl show s1
 ```
 #### Result
-![](CurrentStatusOfSwitch.png)
+![](images/CurrentStatusOfSwitch.png)
 
 ### Check flow entries in the switch and modify them (add/remove)
 #### Show table flows of switch 1
@@ -56,7 +56,7 @@ sh ovs-ofctl dump-flows s1
 pingall
 ```
 ##### Result
-![](AddTableFlows.png)
+![](/images/AddTableFlows.png)
 
 ### Implementing some basic forwarding entries
 * Host 1 can send packet to any host.
@@ -119,7 +119,7 @@ h3 ifconfig
 h3 ifconfig
 ```
 h1's IPv4 Address is 10.0.0.1 
-![](iph1.png) \
+![](images/iph1.png) \
 Drop request from host 3
 ```
 sh ovs-ofctl add-flow s1 priority=1001,nw_src=10.0.0.3,dl_type=0x800,nw_proto=1,icmp_type=8,actions=drop
@@ -134,5 +134,23 @@ sh ovs-ofctl add-flow s1 priority=1001,nw_src=10.0.0.2,nw_dst=10.0.0.3,dl_type=0
 ```
 
 #### Result
-![](UsePortNumberToConfig.png)
+![](images/UsePortNumberToConfig.png)
 
+# Fix ryu-manager error
+* [Fix here](https://blog.csdn.net/weixin_41656968/article/details/130457754)\
+* [Tutorial](https://ryu.readthedocs.io/en/latest/)
+## Run ryu
+* Run ryu-manager fisrt\
+* Then check if the network switch is connected to contrller?
+```
+source ryu-venv/bin/activate
+ryu-manager <controller>.py
+```
+> source create virtual environment for ryu\
+> run controller application by ryu-manager\
+* On mininet
+```
+sh ovs-vsctl show
+```
+> sh ovs-vsctk show: check connect to controller
+![](images/checkconnecttocontroller.png)

@@ -44,7 +44,30 @@ class Controller(app_manager.RyuApp):
 
 	@set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
 	def packet_in_handler(self, ev):
-		pass
+		msg = ev.msg
+		dp = msg.datapath
+		ofp = dp.ofproto
+		ofp_parser = dp.ofproto_parser
+
+		actions = [ofp_parser.OFPActionOutput(ofp.OFPP_FLOOD)]
+		data = None
+		if msg.buffer_id == ofp.OFP_NO_BUFFER:
+			data = msg.data
+
+		if hasattr(msg, 'in_port'):
+			in_port = msg.in_port
+		else:
+			in_port = None
+
+		#out = ofp_parser.OFPPacketOut(datapath=dp, buffer_id=msg.buffer_id, in_port=in_port, actions=actions, data=data)
+		if in_port is not None:  # Check if in_port is not None before using it
+			out = ofp_parser.OFPPacketOut(datapath=dp, buffer_id=msg.buffer_id, in_port=in_port, actions=actions, data=data)
+		else:
+			out = ofp_parser.OFPPacketOut(datapath=dp, buffer_id=msg.buffer_id, actions=actions, data=data)
+
+		dp.send_msg(out)
+
+
 	@set_ev_cls(ofp_event.EventOFPPortStatsReply, MAIN_DISPATCHER)
 	def port_stats_reply_handler(self, ev):
 		pass
