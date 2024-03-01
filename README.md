@@ -139,6 +139,7 @@ sh ovs-ofctl add-flow s1 priority=1001,nw_src=10.0.0.2,nw_dst=10.0.0.3,dl_type=0
 # Fix ryu-manager error
 * [Fix here](https://blog.csdn.net/weixin_41656968/article/details/130457754)
 * [Tutorial](https://ryu.readthedocs.io/en/latest/)
+* [Learn Controller SDN](https://github.com/knetsolutions/learn-sdn-with-ryu)
 ## Run ryu
 * Run ryu-manager fisrt
 * Then check if the network switch is connected to contrller?
@@ -150,6 +151,8 @@ ryu-manager <controller>.py
 > run controller application by ryu-manager
 * On mininet
 ```
+sudo mn --topo single,4 --mac --controller remote --switch ovsk
+
 sh ovs-vsctl show
 ```
 > sh ovs-vsctk show: check connect to controller\
