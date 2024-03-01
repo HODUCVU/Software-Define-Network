@@ -140,6 +140,7 @@ sh ovs-ofctl add-flow s1 priority=1001,nw_src=10.0.0.2,nw_dst=10.0.0.3,dl_type=0
 * [Fix here](https://blog.csdn.net/weixin_41656968/article/details/130457754)
 * [Tutorial](https://ryu.readthedocs.io/en/latest/)
 * [Learn Controller SDN](https://github.com/knetsolutions/learn-sdn-with-ryu)
+* [Ryu with multipath controller](https://github.com/wildan2711/multipath)
 ## Run ryu
 * Run ryu-manager fisrt
 * Then check if the network switch is connected to contrller?
