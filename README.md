@@ -8,6 +8,7 @@
 * Run Ryu controller on host 4 of the creater network in Exercise1
 	* Capture all the message exchanged between the Ryu controller and the switch.
 	* Send an 'OFPPortStatsRequest' to get current network statistics.
+* [Topic detail](https://github.com/HODUCVU/Software-Define-Network/blob/Exercise-controller-ryu/Introduction%20to%20Mininet%20and%20OpenFlow.pdf)
 
 # Fix ryu-manager error
 * [Fix here](https://blog.csdn.net/weixin_41656968/article/details/130457754)
@@ -17,7 +18,7 @@
 * [Ryu with multipath controller](https://github.com/wildan2711/multipath)
 ## Run ryu
 * Run ryu-manager fisrt
-* Then check if the network switch is connected to contrller?
+* Then check if the network switch is connected to controller?
 ```
 source ryu-venv/bin/activate
 ryu-manager <controller>.py
@@ -34,8 +35,10 @@ sh ovs-vsctl show
 ![](images/checkconnecttocontroller.png)
 
 # Solution
-## Create network in Exercise1
+## Network is created in Exercise1
 ## Create controller with ryu
 * [Code here](https://github.com/HODUCVU/Software-Define-Network/blob/Exercise-controller-ryu/controller_ryu/controller_for_exercise.py)
+
 ## Explain
 
+## Result
