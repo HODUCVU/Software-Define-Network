@@ -35,10 +35,36 @@ sh ovs-vsctl show
 ![](images/checkconnecttocontroller.png)
 
 # Solution
-## Network is created in Exercise1
 ## Create controller with ryu
-* [Code here](https://github.com/HODUCVU/Software-Define-Network/blob/Exercise-controller-ryu/controller_ryu/controller_for_exercise.py)
+* [Code here](controller_ryu/CompletedProgram.py)
+
+## Implement
+* Create Network
+```
+sudo mn --topo single,4 --mac --controller remote --switch ovsk
+
+```
+* Run Contrller
+```
+// Creat virtual environmennt for Ryu
+source ryu-venv/bin/activate
+// Run
+ryu-manager /contoller_ryu/CompletedProgram.py
+
+// Check controller connect to network
+sh ovs-vsctl show
+```
+* Result: 
+	* Status connect between controller and switch
+		* is_connected = True.
+		* switch connect to controller with IP 127.0.0.1, port 6653
+		![](images/check-connect.png)
+	* show statistics of current network
+		![](images/statistics-of-current-network.png)
+	* When pingall in network 
+		* Check entry table
+		![](images/entry-table.png)
+		* Capture message between switch and controller
+		![](images/entry-capture-message.png)
 
 ## Explain
-
-## Result
