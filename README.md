@@ -67,4 +67,3 @@ sh ovs-vsctl show
 		* Capture message between switch and controller
 		![](images/entry-capture-message.png)
 
-## Explain
