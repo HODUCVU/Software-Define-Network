@@ -18,7 +18,7 @@
 	* Linear Topology
 	```
 	sudo mn --topo linear,4 --mac --controller remote,ip=127.0.0.1 -i 10.0.0.0/24 --switch ovsk
-        ```
+	```
 	![](images/linear-topo.png)
 	* Tree Topology
 	```
