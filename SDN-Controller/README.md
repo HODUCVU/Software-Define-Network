@@ -58,12 +58,12 @@
 		> -t: test duration in seconds (test in 30s)\
 		> -b 10m: bandwith 10Mbps\
 		> -P: parallel connections (the number connect from h4 to h1)
-* Run ryu
-	* Run virtual environment ryu
+## Run ryu
+* Run virtual environment ryu
 	```
 	source ryu-venv/bin/activate
 	```
-	* Run a simple ryu app to get infor packet
+* Run a simple ryu app to get infor packet
 	```
 	// Get infor from header packet when entries table don't have matching flows
 	ryu-manager ryu.app.simple_switch_13
@@ -73,4 +73,46 @@
 	mininet> sh ovs-vsctl show
 	```
 	> check connect stage\
-	> check connect ip of controller\
+	> check connect ip of controller
+## OpenFlow
+
+* Diagram openflow matching
+	![](/images/openflow-matching.png)
+	When packet is come, start at table 0 -> check matching in table 0 -> n.
+	If header packet matching in a table k then goto table k an execute action set.
+	Else check table miss, if it exists in this table, then execute action set, else drop packet.
+* Action set
+	> output port no\
+	> group id\
+	> drop\
+	> set-queue queue id\
+	> push-tag/pop-tag ethrtype (VLAN,MPLS,PBP)\
+	> set-field type value\
+	> change TTL (IP TTL< MPLS TTL)
+	
+### Openflow Messages
+* Controller to Switch
+	* Feature Request
+	* Packet Out
+	* Modify Flow Table
+	* Modify Group Table
+	* Modify Meter Table
+	* OpenFlow Switch Description Request
+	* OpenFlow Port Description Request
+	* Openflow Statistics Request(Flow, Port, Flowtable, Aggregate, Group, Meter, Queue )
+	* Role Request
+	* Barrier Request
+* Message transcation during the Topology setup
+	1. Hello
+	2. Feature request/Response
+	3. Switch/Port Description Request/Response
+	4. Modify Flow Entry (To install table Miss entry)
+	5. Packet IN (Switch to Controller)
+	6. Packet Out (Controller to Switch)
+	7. Modify Flow Entry (Install a flow)
+	8. Echo
+	=> Messages sequence
+	* Explain
+		* **Hello message** are exchange between switch and controller upon connection startup, if version Openflow of switch different the controller then hello message will fail.
+		* **Echo message** maily used to verify the connection between controller and switch. It also can be used to measure its latency or bandwidth.
+
