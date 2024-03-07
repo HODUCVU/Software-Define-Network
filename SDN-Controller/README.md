@@ -102,7 +102,10 @@
 	* Openflow Statistics Request(Flow, Port, Flowtable, Aggregate, Group, Meter, Queue )
 	* Role Request
 	* Barrier Request
-* Message transcation during the Topology setup
+* Message transcation during the Topology setup	
+	```
+	=> Messages sequence
+
 	1. Hello
 	2. Feature request/Response
 	3. Switch/Port Description Request/Response
@@ -111,7 +114,7 @@
 	6. Packet Out (Controller to Switch)
 	7. Modify Flow Entry (Install a flow)
 	8. Echo
-	=> Messages sequence
+	```
 	* Explain
 		* **Hello message** are exchange between switch and controller upon connection startup, if version Openflow of switch different the controller then hello message will fail.
 		* **Echo message** maily used to verify the connection between controller and switch. It also can be used to measure its latency or bandwidth.
