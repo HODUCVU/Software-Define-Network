@@ -2,7 +2,7 @@
 * [Link](https://learning.knetsolutions.in/docs/ryu/)
 # Lecture
 ## Get MAC Address in subnet by ping IP Address:
-	* To h1 get MAC Address of h2
+* To h1 get MAC Address of h2
 	```
 	mininet>h1 ping h2
 	// see ARP (Address Resolution Protocol) of h1
@@ -10,22 +10,22 @@
 	```
 
 	![](images/h1ARP.png)
-	* Delete MAC Address of host 2 in ARP entry of host 1
-	'''
+* Delete MAC Address of host 2 in ARP entry of host 1
+	```
 	h1 arp -d 10.0.0.2
-	'''
+	```
 ## Create network with many topos
-	* Linear Topology
+* Linear Topology
 	```
 	sudo mn --topo linear,4 --mac --controller remote,ip=127.0.0.1 -i 10.0.0.0/24 --switch ovsk
 	```
 	![](images/linear-topo.png)
-	* Tree Topology
+* Tree Topology
 	```
 	sudo mn --topo tree,depth=2,fanout=3 --mac --controller remote,ip=127.0.0.1 -i 10.0.0.0/24 --switch ovsk
 	```
 	![](images/tree-topo.png)
-	* Single Topology
+* Single Topology
 	```
 	sudo mn --topo single,4 --mac --controller remote,ip=127.0.0.1 -i 10.0.0.0/24 --switch ovsk
 	```
@@ -34,7 +34,7 @@
 	```
 	mininet>iperf src-node dst-node
 	```
-	Example:\
+	Example:
 	> mininet> iperf h1 h2\
 	Result: ['30.3 Gbits/sec', '30.2 Gbits/sec']
 * Test detail: test connect between h1 and h4
