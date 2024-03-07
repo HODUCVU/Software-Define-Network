@@ -30,7 +30,7 @@ ryu-manager <controller>.py
 ```
 sudo mn --topo single,4 --mac --controller remote --switch ovsk
 
-sh ovs-vsctl show
+mininet> sh ovs-vsctl show
 ```
 > sh ovs-vsctk show: check connect to controller\
 ![](images/checkconnecttocontroller.png)
@@ -43,8 +43,8 @@ sh ovs-vsctl show
 * Create Network
 ```
 sudo mn --topo single,4 --mac --controller remote --switch ovsk
-
 ```
+> Network is created on Exercise1
 * Run Contrller
 ```
 // Creat virtual environmennt for Ryu
