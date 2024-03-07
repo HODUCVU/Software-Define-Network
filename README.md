@@ -69,14 +69,15 @@ sh ovs-vsctl show
 		![](images/entry-capture-message.png)
 
 ## Add controller
+	
 	```
 	mininet> sh ovs-vsctl del-controller s1
 	mininet> sh ovs-vsctl set-controller s1 tcp:10.0.0.4:6653
-
+	
 	// On controller
 	ryu-manager --ofp-tcp-listen-port 6653 --ofp-listen-host 10.0.0.4 app-controller.py
 	```
-	* If run on controller remote => check switch connect to controller ip
+* If run on controller remote => check switch connect to controller ip
 	```
 	mininet> sh ovs-vsctl del-controller s1
 	mininet> sh ovs-vsctl set-controller s1 tcp:127.0.0.1:6653
