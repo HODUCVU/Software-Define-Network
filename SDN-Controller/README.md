@@ -104,7 +104,7 @@
 	* Barrier Request
 * Message transcation during the Topology setup	
 	```
-	=> Messages sequence
+	// Messages sequence
 
 	1. Hello
 	2. Feature request/Response
@@ -118,4 +118,14 @@
 	* Explain
 		* **Hello message** are exchange between switch and controller upon connection startup, if version Openflow of switch different the controller then hello message will fail.
 		* **Echo message** maily used to verify the connection between controller and switch. It also can be used to measure its latency or bandwidth.
+		* **Features message** use to get basic info: *datapath ID, buffer, number of table, statistics* of switch.
+		* **Modify Flow Entry** => use OFPT_FLOW_MOD to execute.
+			```
+			Command: ADD, MODIFY, MODIFY_STRICT, DELETE, DELETE_STRICT
+			```
+* Important note
+	* Openflow version should match between the switch and Controller.
+	* Controller App should process *Packet_in* message to build the Switching/Routing logic
+	* Controller App sould process *Flow Modifycation* message to add/del/modify the flow in the switch.
+	* Controller App should use *Flow Stats*. *Port Stats* request message to get the statistics of flows and ports.
 
