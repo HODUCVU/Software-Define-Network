@@ -1,4 +1,3 @@
-
 from ryu.base import app_manager
 from ryu.controller import ofp_event
 from ryu.controller.handler import CONFIG_DISPATCHER, MAIN_DISPATCHER
@@ -105,8 +104,9 @@ class Controller(app_manager.RyuApp):
 					in_port=in_port, actions=actions,data=data)
 
 		datapath.send_msg(out)
+		#self.port_stats_reply_handler(ev)
 	# Get reply statitics from switch
-	@set_ev_cls(ofp_event.EventOFPPortStatsReply, MAIN_DISPATCHER)
+	@set_ev_cls(ofp_event.EventOFPPortStatsReply, [MAIN_DISPATCHER,CONFIG_DISPATCHER])
 	def port_stats_reply_handler(self, ev):
 		stats = []
 		for stat in ev.msg.body:
